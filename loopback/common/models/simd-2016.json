@@ -1,0 +1,55 @@
+{
+  "name": "Simd2016",
+  "description": "Data Zone level ranks and quantiles for the Scottish Index of Multiple Deprivation (SIMD) overall, and by individual domain.",
+  "plural": "Simd2016",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mongodb": {
+    "collection": "Stats"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true,
+      "id": true
+    },
+    "year": {
+      "type": "number",
+      "required": true
+    },
+    "zone": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "domain": {
+      "type": "string",
+      "required": true
+    },
+    "measure": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "dataZone": {
+      "type": "belongsTo",
+      "model": "GeoJSONFeature",
+      "foreignKey": "zone",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
